@@ -6,25 +6,31 @@
     <body>
         <form method="POST" action="productos.js">
             <h1>App de inventario</h1>
-            <input type="text" name="agregarP" placeholder="Agrega nuevo producto">
+            <input id="iptCod" type="number" name="Codigo" placeholder="Codigo">
+            <input id="iptNom"type="text" name="Nombre" placeholder="Nombre">
             <br>
-            <button id="idbotonAgregar" name="agregarProduct">Agregar</button>
+            <input id='iptDes'type="text" name="Descripcion" placeholder="Descripción">
+            <input id="iptCant" type="number" name="Cantidad" placeholder="Cantidad">
+            <br>
+            <input type="iptCost" name="Costo" placeholder="Costo">
+            <br>
+            <button id="btnAgregar" name="agregarProduct">Agregar</button>
             <br>
             <br>
             <input type="number" name="borrar" placeholder="Borrar producto por código">
             <br>
-            <button id="idBotonBorrar" name="borrarProduct">Borrar</button>
+            <button id="btnBorrar" name="borrarProduct">Borrar</button>
             <br>
             <br>
             <input type="number" name="buscarP" placeholder="Buscar producto por código">
             <br>
-            <button id="IdbotonBuscar" name="buscarProduct">Buscar</button>
+            <button id="bntBuscar" name="buscarProduct">Buscar</button>
             <br>
             <br>
-            <button id="IdbotonRecuperar" name="recuperar">Recuperar los productos</button>
+            <button id="btnRecuperar" name="recuperar">Recuperar los productos</button>
             <br>
             <br>
-            <button id="IdbotonRinverso" name="recuperarInverso">Recuperar productos inverso</button>
+            <button id="btnRinverso" name="recuperarInverso">Recuperar productos inverso</button>
 
         </form>
         <script src="main.js" type="module"></script>
