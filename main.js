@@ -13,6 +13,9 @@ class Producto {
         this._cantidad = cantidad
         this._costo = costo
     }
+    setCodigo(){
+        return this._codigo
+    }
     mostrarInfo(){
         return this._codigo + '._ '+ this._nombre + ' (' + this._desc +') '+ this._cantidad + ' unidades ' + this._costo + ' pesos' 
     }
@@ -29,17 +32,44 @@ class Almacen{
             return true
         }
     }
+    delateProduct(codigo){
+        let caja
+        for(let i = 0; i < (this._productos.length - 1); i++){
+           if(this._productos[i].code == codigo) {
+               this._productos[i] = undefined
+                caja = i
+            }
+        }
+        for(; caja < (this._productos.length - 1); caja++){
+            this._productos[caja] = this._productos[caja++]
+        }
+        //unico metodo permitido por el maestro para eliminar el ultimo espacio del vector
+        this._productos.pop()
+        return true
+    }
     mostrar() {
-        return this._productos[0].mostrarInfo()
+        for(let i=0;i<this._productos.length; i++){
+             console.log(this._productos[i].mostrarInfo())
+        }
+        
     }
 }
+
+var Bodega1 = new Almacen()
 btnAgregar.addEventListener('click', () => {
     let newProduct = new Producto(code.value , nom.value, desc.value, cant.value, cost.value)
-    let agregar = new Almacen()
-    if(agregar.addProduct(newProduct) ===true){
-        alert('Producto guardado' + agregar.mostrar() )
+    if(Bodega1.addProduct(newProduct) ===true){
+        alert('Producto guardado' + Bodega1.mostrar() )
     }else{
         alert('Producto no guardado no hay espacio')
-    }
+    }   
+})
+
+btnBorrar.addEventListener('click', () =>{
     
+    if(Bodega1.delateProduct(code.value) ===true){
+        alert('Producto eliminado' + Bodega1.mostrar() )
+    }else{
+        alert('Producto no eliminado')
+    }  
 })
