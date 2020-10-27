@@ -34,10 +34,12 @@ class Almacen{
     }
     delateProduct(codigo){
         let caja
-        for(let i = 0; i < (this._productos.length - 1); i++){
-           if(this._productos[i].code == codigo) {
+        for(let i = 0; i < (this._productos.length); i++){
+           if(this._productos[i].setCodigo() == codigo) {
                this._productos[i] = undefined
                 caja = i
+                console.log(this._productos[i])
+
             }
         }
         for(; caja < (this._productos.length - 1); caja++){
@@ -67,8 +69,9 @@ btnAgregar.addEventListener('click', () => {
 
 btnBorrar.addEventListener('click', () =>{
     
-    if(Bodega1.delateProduct(code.value) ===true){
-        alert('Producto eliminado' + Bodega1.mostrar() )
+    if(Bodega1.delateProduct(code.value) === true){
+        alert('Producto eliminado')
+        Bodega1.mostrar() 
     }else{
         alert('Producto no eliminado')
     }  
