@@ -3,6 +3,7 @@ var nom = document.getElementById("iptNom")
 var desc = document.getElementById("iptDes")
 var cant = document.getElementById("iptCant")
 var cost = document.getElementById("iptCost")
+var codeB = document.getElementById("iptCodeB")
 
 
 class Producto {
@@ -35,11 +36,10 @@ class Almacen{
     delateProduct(codigo){
         let caja
         for(let i = 0; i < (this._productos.length); i++){
-           if(this._productos[i].setCodigo() == codigo) {
-               this._productos[i] = undefined
+           if(this._productos[i].setCodigo() === codigo) {
+            console.log(this._productos[i].setCodigo())   
+             this._productos[i] = undefined
                 caja = i
-                console.log(this._productos[i])
-
             }
         }
         for(; caja < (this._productos.length - 1); caja++){
@@ -69,7 +69,7 @@ btnAgregar.addEventListener('click', () => {
 
 btnBorrar.addEventListener('click', () =>{
     
-    if(Bodega1.delateProduct(code.value) === true){
+    if(Bodega1.delateProduct(codeB.value) === true){
         alert('Producto eliminado')
         Bodega1.mostrar() 
     }else{
