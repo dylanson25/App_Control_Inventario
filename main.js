@@ -52,7 +52,6 @@ class Almacen {
 
     }
     buscar(codigo) {
-
         let i = 0
         while (i < this._productos.length && this._productos[i].setCodigo() != codigo) {
             i++
@@ -65,18 +64,33 @@ class Almacen {
 
     }
     listar() {
-        if(i < this._productos.length){
-            return false
-        }else{
+        let i = 0
         let ls2 = document.querySelector('#listaForm')
-        while (i < this._productos.length && this._productos[i].setCodigo() != codigo) {
+        while (i < this._productos.length) {
             let objeto = document.createElement('li')
             objeto.textContent = this._productos[i].mostrarInfo()
             ls2.appendChild(objeto)
             i++
         }
-        ls2.appendChild(objeto)
-        return true
+        if (i < this._productos.length) {
+            return false
+        } else {
+            return true
+        }
+    }
+    listarInver() {
+        if (this._productos.length != 0) {
+            let i = this._productos.length
+            let ls2 = document.querySelector('#listaForm')
+            while (i <= this._productos.length && i != -1) {
+                let objeto = document.createElement('li')
+                objeto.textContent = this._productos[i].mostrarInfo()
+                ls2.appendChild(objeto)
+                i--
+            }
+            return true
+        } else {
+            return false
         }
     }
     mostrar() {
@@ -114,6 +128,13 @@ btnBuscar.addEventListener('click', () => {
 })
 btnRecuperar.addEventListener('click', () => {
     if (Bodega1.listar() === false) {
+        alert('No hay productos que mostrar')
+    } else {
+        alert('producto mostrado')
+    }
+})
+btnRinverso.addEventListener('click', () => {
+    if (Bodega1.listarInver() === false) {
         alert('No hay productos que mostrar')
     } else {
         alert('producto mostrado')
