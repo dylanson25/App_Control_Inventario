@@ -35,7 +35,7 @@ class Almacen {
     }
     delateProduct(codigo) {
         let i = 0
-        while (this._productos[i].setCodigo() != codigo && i < this._productos.length) {
+        while (i < this._productos.length && this._productos[i].setCodigo() != codigo) {
             i++
         }
         if (i > this._productos.length) {
@@ -52,8 +52,9 @@ class Almacen {
 
     }
     buscar(codigo){
+        
         let i = 0
-        while (this._productos[i].setCodigo() != codigo && i < this._productos.length) {
+        while (i < this._productos.length && this._productos[i].setCodigo() != codigo ) {
             i++
         }
         if (i < this._productos.length) {
@@ -90,9 +91,9 @@ btnBorrar.addEventListener('click', () => {
     }
 })
 btnBuscar.addEventListener('click', () => {
-    if (Bodega1.buscar(codeB.value) === false) {
+    if (Bodega1.buscar(busCod.value) === false) {
         alert('Producto no encontrado')
     } else {
-        console.log(Bodega1.buscar(codeB.value))
+        console.log(Bodega1.buscar(busCod.value))
     }
 })
