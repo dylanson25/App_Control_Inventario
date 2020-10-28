@@ -4,7 +4,7 @@ var desc = document.getElementById("iptDes")
 var cant = document.getElementById("iptCant")
 var cost = document.getElementById("iptCost")
 var codeB = document.getElementById("iptCodeB")
-
+var busCod = document.getElementById("iptBuscar")
 
 class Producto {
     constructor(codigo, nombre, desc, cantidad, costo) {
@@ -51,11 +51,22 @@ class Almacen {
         }
 
     }
+    buscar(codigo){
+        let i = 0
+        while (this._productos[i].setCodigo() != codigo && i < this._productos.length) {
+            i++
+        }
+        if (i < this._productos.length) {
+            return this._productos[i].mostrarInfo()
+        }else{
+            return false
+        }
+        
+    }
     mostrar() {
         for (let i = 0; i < this._productos.length; i++) {
             console.log(this._productos[i].mostrarInfo())
         }
-
     }
 }
 
@@ -63,18 +74,26 @@ var Bodega1 = new Almacen()
 btnAgregar.addEventListener('click', () => {
     let newProduct = new Producto(code.value, nom.value, desc.value, cant.value, cost.value)
     if (Bodega1.addProduct(newProduct) === true) {
-        alert('Producto guardado' + Bodega1.mostrar())
+        alert('Producto guardado')
+        Bodega1.mostrar()
     } else {
         alert('Producto no guardado no hay espacio')
     }
 })
 
 btnBorrar.addEventListener('click', () => {
-
     if (Bodega1.delateProduct(codeB.value) === true) {
         alert('Producto eliminado')
         Bodega1.mostrar()
     } else {
-        alert('Producto no eliminado')
+        alert('Producto no encontrado')
+    }
+})
+btnBuscar.addEventListener('click', () => {
+    if (Bodega1.buscar(codeB.value) === true) {
+        alert('Producto eliminado')
+        Bodega1.mostrar()
+    } else {
+        alert('Producto no encontrado')
     }
 })
