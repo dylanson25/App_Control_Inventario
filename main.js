@@ -14,14 +14,14 @@ class Producto {
         this._cantidad = cantidad
         this._costo = costo
     }
-    setCodigo(){
+    setCodigo() {
         return this._codigo
     }
-    mostrarInfo(){
-        return this._codigo + '._ '+ this._nombre + ' (' + this._desc +') '+ this._cantidad + ' unidades ' + this._costo + ' pesos' 
+    mostrarInfo() {
+        return this._codigo + '._ ' + this._nombre + ' (' + this._desc + ') ' + this._cantidad + ' unidades ' + this._costo + ' pesos'
     }
 }
-class Almacen{
+class Almacen {
     constructor() {
         this._productos = new Array()
 
@@ -33,46 +33,48 @@ class Almacen{
             return true
         }
     }
-    delateProduct(codigo){
-        let caja
-        for(let i = 0; i < (this._productos.length); i++){
-           if(this._productos[i].setCodigo() === codigo) {
-            console.log(this._productos[i].setCodigo())   
-             this._productos[i] = undefined
-                caja = i
-            }
+    delateProduct(codigo) {
+        let i = 0
+        while (this._productos[i].setCodigo() != codigo && i < this._productos.length) {
+            i++
         }
-        for(; caja < (this._productos.length - 1); caja++){
-            this._productos[caja] = this._productos[caja++]
+        if (i > this._productos.length) {
+            return false
+        } else {
+            this._productos[i] = null
+            do{
+                this._productos[i] = this._productos[i + 1]
+                i++
+            }while(i < this._productos.length)
+            this._productos.pop()
+            return true
         }
-        //unico metodo permitido por el maestro para eliminar el ultimo espacio del vector
-        this._productos.pop()
-        return true
+
     }
     mostrar() {
-        for(let i=0;i<this._productos.length; i++){
-             console.log(this._productos[i].mostrarInfo())
+        for (let i = 0; i < this._productos.length; i++) {
+            console.log(this._productos[i].mostrarInfo())
         }
-        
+
     }
 }
 
 var Bodega1 = new Almacen()
 btnAgregar.addEventListener('click', () => {
-    let newProduct = new Producto(code.value , nom.value, desc.value, cant.value, cost.value)
-    if(Bodega1.addProduct(newProduct) ===true){
-        alert('Producto guardado' + Bodega1.mostrar() )
-    }else{
+    let newProduct = new Producto(code.value, nom.value, desc.value, cant.value, cost.value)
+    if (Bodega1.addProduct(newProduct) === true) {
+        alert('Producto guardado' + Bodega1.mostrar())
+    } else {
         alert('Producto no guardado no hay espacio')
-    }   
+    }
 })
 
-btnBorrar.addEventListener('click', () =>{
-    
-    if(Bodega1.delateProduct(codeB.value) === true){
+btnBorrar.addEventListener('click', () => {
+
+    if (Bodega1.delateProduct(codeB.value) === true) {
         alert('Producto eliminado')
-        Bodega1.mostrar() 
-    }else{
+        Bodega1.mostrar()
+    } else {
         alert('Producto no eliminado')
-    }  
+    }
 })
