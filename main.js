@@ -90,10 +90,9 @@ btnBorrar.addEventListener('click', () => {
     }
 })
 btnBuscar.addEventListener('click', () => {
-    if (Bodega1.buscar(codeB.value) === true) {
-        alert('Producto eliminado')
-        Bodega1.mostrar()
-    } else {
+    if (Bodega1.buscar(codeB.value) === false) {
         alert('Producto no encontrado')
+    } else {
+        console.log(Bodega1.buscar(codeB.value))
     }
 })
