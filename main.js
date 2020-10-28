@@ -42,27 +42,42 @@ class Almacen {
             return false
         } else {
             this._productos[i] = null
-            do{
+            do {
                 this._productos[i] = this._productos[i + 1]
                 i++
-            }while(i < this._productos.length)
+            } while (i < this._productos.length)
             this._productos.pop()
             return true
         }
 
     }
-    buscar(codigo){
-        
+    buscar(codigo) {
+
         let i = 0
-        while (i < this._productos.length && this._productos[i].setCodigo() != codigo ) {
+        while (i < this._productos.length && this._productos[i].setCodigo() != codigo) {
             i++
         }
         if (i < this._productos.length) {
             return this._productos[i].mostrarInfo()
-        }else{
+        } else {
             return false
         }
-        
+
+    }
+    listar() {
+        if(i < this._productos.length){
+            return false
+        }else{
+        let ls2 = document.querySelector('#listaForm')
+        while (i < this._productos.length && this._productos[i].setCodigo() != codigo) {
+            let objeto = document.createElement('li')
+            objeto.textContent = this._productos[i].mostrarInfo()
+            ls2.appendChild(objeto)
+            i++
+        }
+        ls2.appendChild(objeto)
+        return true
+        }
     }
     mostrar() {
         for (let i = 0; i < this._productos.length; i++) {
@@ -95,5 +110,12 @@ btnBuscar.addEventListener('click', () => {
         alert('Producto no encontrado')
     } else {
         console.log(Bodega1.buscar(busCod.value))
+    }
+})
+btnRecuperar.addEventListener('click', () => {
+    if (Bodega1.listar() === false) {
+        alert('No hay productos que mostrar')
+    } else {
+        alert('producto mostrado')
     }
 })
