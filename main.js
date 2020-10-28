@@ -81,7 +81,7 @@ class Almacen {
     listarInver() {
         if (this._productos.length != 0) {
             let i = this._productos.length - 1
-            let ls2 = document.querySelector('#listaForm')
+            let ls2 = document.querySelector('#listaForm2')
             while (i < this._productos.length && i != -1) {
                 let objeto = document.createElement('li')
                 objeto.textContent = this._productos[i].mostrarInfo()
